@@ -1,0 +1,5 @@
+FitCasa 5.8 — Corrección de dirección Supabase
+URL correcta: https://sbifmdyxewfiumpgzcli.supabase.co
+Subir el CONTENIDO de la carpeta fitcasa a la raíz del repositorio GitHub Pages.
+Configurar Google Cloud redirect URI: https://sbifmdyxewfiumpgzcli.supabase.co/auth/v1/callback
+No borrar datos del navegador ni perfiles antiguos para corregir este error.
