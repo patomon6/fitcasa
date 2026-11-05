@@ -50,3 +50,29 @@ grant execute on function public.fitcasa_review_request(uuid,text,text) to authe
 -- update public.fitcasa_accounts set status='approved',role='owner'
 -- where user_id='REEMPLAZAR_CON_UUID_DEL_PROPIETARIO' and status='pending';
 -- No otorgar propietario automáticamente al primer usuario: es inseguro.
+
+
+-- FITCASA 6: DATOS PERSONALES MULTIDISPOSITIVO (EJECUTAR UNA VEZ)
+create table if not exists public.fitcasa_user_data (
+ user_id uuid primary key references auth.users(id) on delete cascade,
+ payload jsonb not null default '{}'::jsonb,
+ updated_at timestamptz not null default now()
+);
+alter table public.fitcasa_user_data enable row level security;
+revoke all on public.fitcasa_user_data from anon;
+grant select,insert,update on public.fitcasa_user_data to authenticated;
+drop policy if exists fitcasa_user_data_read on public.fitcasa_user_data;
+create policy fitcasa_user_data_read on public.fitcasa_user_data for select to authenticated
+ using (user_id=(select auth.uid()) and exists(select 1 from public.fitcasa_accounts a where a.user_id=(select auth.uid()) and a.status='approved'));
+drop policy if exists fitcasa_user_data_insert on public.fitcasa_user_data;
+create policy fitcasa_user_data_insert on public.fitcasa_user_data for insert to authenticated
+ with check (user_id=(select auth.uid()) and exists(select 1 from public.fitcasa_accounts a where a.user_id=(select auth.uid()) and a.status='approved'));
+drop policy if exists fitcasa_user_data_update on public.fitcasa_user_data;
+create policy fitcasa_user_data_update on public.fitcasa_user_data for update to authenticated
+ using (user_id=(select auth.uid()) and exists(select 1 from public.fitcasa_accounts a where a.user_id=(select auth.uid()) and a.status='approved'))
+ with check (user_id=(select auth.uid()));
+create or replace function public.fitcasa_touch_updated_at() returns trigger
+language plpgsql set search_path='' as $$ begin new.updated_at=now();return new;end $$;
+drop trigger if exists fitcasa_data_updated on public.fitcasa_user_data;
+create trigger fitcasa_data_updated before update on public.fitcasa_user_data
+for each row execute function public.fitcasa_touch_updated_at();
