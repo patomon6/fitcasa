@@ -36,3 +36,23 @@
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
 .movement-details{overflow:hidden}.real-figure svg{width:min(100%,260px);height:auto;aspect-ratio:180/205}.real-figure{border:1px solid rgba(130,180,175,.18);border-radius:16px;background:radial-gradient(circle at 50% 35%,rgba(28,134,113,.18),transparent 70%)}
 @media(prefers-reduced-motion:reduce){.real-figure svg *{animation:none!important}}
+
+/* Portada de acceso, fotografías optimizadas y almacenadas localmente */
+.family-locked #family-root{padding:0!important;background:#07191b!important}
+.welcome-screen{position:relative;min-height:100dvh;width:100%;overflow:hidden;isolation:isolate;background:#0b2b2a;color:#fff}
+.welcome-photo{position:absolute;inset:0;background-position:center 36%;background-size:cover;will-change:opacity}
+/* Four photographs, 10 seconds each, looping forever. */
+.welcome-photo-a{background-image:url('./icons/welcome-1.webp');animation:welcome-cycle 40s linear infinite 0s}
+.welcome-photo-b{background-image:url('./icons/welcome-2.webp');animation:welcome-cycle 40s linear infinite -30s}
+.welcome-photo-c{background-image:url('./icons/welcome-3.webp');animation:welcome-cycle 40s linear infinite -20s}
+.welcome-photo-d{background-image:url('./icons/welcome-4.webp');animation:welcome-cycle 40s linear infinite -10s}
+@keyframes welcome-cycle{0%,22.5%{opacity:1}25%,97.5%{opacity:0}100%{opacity:1}}
+.welcome-shade{position:absolute;inset:0;background:linear-gradient(180deg,#031617a8 0%,#00151212 30%,#031514a0 65%,#031513ef 100%)}
+.welcome-content{position:relative;z-index:1;display:flex;align-items:center;flex-direction:column;justify-content:space-between;min-height:100dvh;max-width:600px;margin:auto;padding:clamp(45px,9vh,90px) 24px max(28px,env(safe-area-inset-bottom))}
+.welcome-brand{display:flex;gap:12px;align-items:center;font-size:clamp(32px,9vw,54px);letter-spacing:-1.8px;font-weight:900;text-shadow:0 3px 18px #0019}.welcome-brand>span{color:#a0ff65;font-size:48px}.welcome-brand strong span{color:#a0ff65}
+.welcome-tagline{margin:6px 0 auto;font-size:12px;text-align:center;letter-spacing:.5px;color:#e6f9f1;text-shadow:0 2px 10px #000}
+.welcome-bottom{width:100%;text-align:center}.welcome-bottom h1{font-size:clamp(30px,8vw,44px);line-height:1.2;margin:0 0 8px;color:#fff;text-shadow:0 3px 16px #000}.welcome-bottom>p{color:#f2fff8}.welcome-bottom>p:first-of-type{font-size:17px;margin:0 0 23px}
+.welcome-enter{display:block;width:100%;min-height:62px;border:0;border-radius:999px;background:linear-gradient(100deg,#34bc38,#188f54);color:white;font-weight:800;font-size:19px;box-shadow:0 10px 30px #0006}.welcome-other{display:block;width:100%;margin:14px auto 0;background:transparent;border:0;color:#fff;text-decoration:underline;text-underline-offset:4px;font-weight:700;font-size:14px;box-shadow:none}
+.welcome-dots{display:flex;justify-content:center;gap:9px;margin:24px 0 15px}.welcome-dots span{width:9px;height:9px;border-radius:100%;background:#fff8;animation:welcome-dot 40s infinite}.welcome-dots span:nth-child(2){animation-delay:-30s}.welcome-dots span:nth-child(3){animation-delay:-20s}.welcome-dots span:nth-child(4){animation-delay:-10s}@keyframes welcome-dot{0%,22.5%,100%{background:#8fff70}25%,97.5%{background:#fff8}}
+.welcome-privacy{font-size:11px!important;line-height:1.5;color:#d5e7e3!important;margin:0!important}.welcome-notice{background:#153c37bd;border-radius:10px;padding:8px;font-size:12px}
+@media(prefers-reduced-motion:reduce){.welcome-photo,.welcome-dots span{animation:none!important}.welcome-photo-b,.welcome-photo-c,.welcome-photo-d{display:none}}

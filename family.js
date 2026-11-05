@@ -64,5 +64,26 @@ document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)r
 document.addEventListener('submit',e=>{if(e.target.id==='profile-form'){e.preventDefault();e.stopImmediatePropagation();showCreate()}},true);
 const oldRender=render;render=function(){oldRender();if(tab==='inicio'&&unlocked){byId('view')?.insertAdjacentHTML('afterbegin',metrics())}if(tab==='ajustes'&&unlocked){byId('view')?.insertAdjacentHTML('afterbegin',`<div class="card"><h2>Mi perfil</h2><div class="row">${photo(profile())}<strong>${safe(profile()?.name)}</strong><button id="family-edit">Editar ficha y salud</button><button id="family-personalize">Foto y nombre</button><button id="family-change-password-button">Cambiar contraseña</button><button id="family-lock">Cerrar sesión 🔒</button>${isAdmin()?'<button id="family-create-admin">＋ Agregar perfil</button><button id="family-manage-admin">Administrar perfiles</button>':''}</div></div>`)} };
 document.addEventListener('click',e=>{if(e.target.closest('#family-lock')){document.getElementById('coach-live')?.setAttribute('hidden','');lock()} if(e.target.closest('#family-personalize'))showPersonalize();if(e.target.closest('#family-change-password-button'))showChangePassword();if(e.target.closest('#family-create-admin'))showCreate();if(e.target.closest('#family-manage-admin'))showManage()});
+
+// Portada FitCasa: fotos locales alternadas cada 10 segundos. El formulario de acceso permanece fijo.
+const originalChooser=showChooser;
+showChooser=function(message=''){
+ const last=profiles.items.find(p=>p.id===profiles.active)||profiles.items[0];
+ const greeting=last?`¡Hola, ${safe(last.name)}!`:'¡Bienvenido a FitCasa!';
+ setOverlay(`<div class="welcome-screen" aria-label="Bienvenida a FitCasa">
+ <div class="welcome-photo welcome-photo-a" aria-hidden="true"></div><div class="welcome-photo welcome-photo-b" aria-hidden="true"></div><div class="welcome-photo welcome-photo-c" aria-hidden="true"></div><div class="welcome-photo welcome-photo-d" aria-hidden="true"></div>
+ <div class="welcome-shade" aria-hidden="true"></div>
+ <div class="welcome-content"><div class="welcome-brand"><span aria-hidden="true">⌂</span><strong>Fit<span>Casa</span></strong></div>
+ <p class="welcome-tagline">Salud · Entrenamiento · Bienestar · Familia</p>
+ <div class="welcome-bottom"><h1>${greeting}</h1><p>Tu bienestar comienza aquí</p>
+ ${message?`<p class="welcome-notice">${safe(message)}</p>`:''}
+ ${last?`<button type="button" class="welcome-enter" data-choose="${safe(last.id)}">Entrar a FitCasa</button>`:`<button type="button" class="welcome-enter" id="welcome-profiles">Ver perfiles</button>`}
+ <button type="button" class="welcome-other" id="welcome-profiles">${last?'No soy esta persona · Cambiar perfil':'Seleccionar perfil'}</button>
+ <div class="welcome-dots" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+ <p class="welcome-privacy">Acceso protegido por la clave de cada perfil · Datos guardados en este dispositivo</p>
+ </div></div></div>`);
+};
+root.addEventListener('click',e=>{if(e.target.closest('#welcome-profiles'))originalChooser()});
+
 lock();
 })();

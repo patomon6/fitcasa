@@ -28,3 +28,11 @@ FitCasa guarda información localmente, sin cifrado integral ni autenticación d
 - Nuevas contraseñas de 6 a 12 caracteres, con recomendación de 10 a 12.
 - Las contraseñas existentes fuera del rango pueden seguir usándose para iniciar sesión y luego actualizarse.
 - La autenticación sigue siendo local; no hay recuperación por correo.
+
+
+## Versión 5.6
+Portada con dos fotografías locales que alternan cada 10 segundos mediante transiciones CSS. Saludo, botón de acceso y selección de perfil permanecen fijos. Respeta la preferencia de movimiento reducido. No borra datos existentes.
+
+
+## 5.7
+Portada con cuatro fotografías rotatorias cada 10 segundos en bucle continuo, fundido suave, controles fijos. Sin modificar perfiles ni datos locales.
