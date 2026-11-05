@@ -38,3 +38,19 @@ Aplicación PWA gratuita para Android publicada en GitHub Pages. No requiere cue
 La cuenta principal preexistente (id `principal`) se asigna como administradora al actualizar. En instalaciones nuevas, el primer perfil es administrador. En la pantalla de selección se muestran todos los perfiles. Para crear otro, ingresa al perfil administrador y abre Ajustes → Agregar perfil. La evaluación inicial solo se solicita al entrar por primera vez a cada perfil.
 
 IMPORTANTE: el control de administrador y las claves son locales y no constituyen seguridad fuerte; con acceso técnico al almacenamiento del navegador pueden eludirse. No hay sincronización entre dispositivos.
+
+
+## FitCasa 4.2 — Mensajes motivacionales
+En Inicio, la frase cambia automáticamente cada 9 segundos mientras la página está visible. Incluye mensajes breves en español, inglés, portugués, francés, alemán e italiano, identificados por idioma. Animación discreta y compatible con la preferencia de movimiento reducido. No es un GIF: el texto sigue siendo accesible y ligero.
+
+
+## FitCasa 4.3
+- Indicadores IMC, metabolismo y otros con explicaciones desplegables dentro de la aplicación, sin alerta del navegador.
+- Esquemas animados de movimiento y enfoque muscular en cada ejercicio y en el entrenador guiado. Son ilustraciones simplificadas, no videos de técnica ni GIF anatómicos.
+- Las confirmaciones de otras operaciones aún pueden usar cuadros del navegador; requieren revisión posterior.
+
+## Versión 4.4: animaciones controlables
+- Los esquemas de movimiento se repiten automáticamente y funcionan sin conexión.
+- Cada esquema permite pausar/reanudar y ajustar velocidad (lenta, normal o rápida).
+- Incluye enfoque muscular y una indicación breve; son esquemas orientativos, **no demostraciones biomecánicas verificadas**.
+- Se respeta la preferencia del dispositivo de reducir movimiento.
