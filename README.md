@@ -14,3 +14,17 @@ Sube el contenido de la carpeta `fitcasa` a la raíz de tu repositorio GitHub Pa
 
 ## Seguridad
 FitCasa guarda información localmente, sin cifrado integral ni autenticación de servidor. No es apta aún para ofrecer garantías de privacidad de datos de salud en un servicio público. Antes de una distribución amplia, revisar seguridad, traducciones de alertas y técnica de ejercicios con especialistas.
+
+
+## Versión 5.3 — recuperación del acceso local
+- Los perfiles antiguos pueden iniciar sesión con su contraseña existente, incluso si es corta.
+- Tras el inicio de sesión con una clave corta se solicita su actualización a una contraseña de 6 a 12 caracteres.
+- Ajustes > Cambiar contraseña exige verificar la contraseña actual.
+- Cada perfil sigue siendo local e independiente en el mismo dispositivo.
+- **No existe todavía registro por correo, recuperación por email ni sincronización entre dispositivos.** Requiere implementar backend de autenticación (p. ej., Supabase Auth) y migración consentida.
+- La información de salud permanece sin cifrado local.
+
+## Versión 5.4
+- Nuevas contraseñas de 6 a 12 caracteres, con recomendación de 10 a 12.
+- Las contraseñas existentes fuera del rango pueden seguir usándose para iniciar sesión y luego actualizarse.
+- La autenticación sigue siendo local; no hay recuperación por correo.
