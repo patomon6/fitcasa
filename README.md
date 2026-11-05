@@ -54,3 +54,43 @@ En Inicio, la frase cambia automáticamente cada 9 segundos mientras la página 
 - Cada esquema permite pausar/reanudar y ajustar velocidad (lenta, normal o rápida).
 - Incluye enfoque muscular y una indicación breve; son esquemas orientativos, **no demostraciones biomecánicas verificadas**.
 - Se respeta la preferencia del dispositivo de reducir movimiento.
+
+## FitCasa 4.5
+- Se eliminó la tarjeta repetitiva de plan adaptado, conservando la adaptación interna.
+- Pestañas Entrenar y Cardio.
+- Cardio permite registrar bicicleta, caminar, correr, elíptica, bailar u otra actividad.
+
+
+## FitCasa 4.7 — Salud y adaptación
+- Cuestionario sin texto libre: condiciones declaradas, síntomas, molestias, restricciones y consentimiento explícito.
+- «Ninguna conocida» no significa autorización médica.
+- Reglas conservadoras de adaptación de ejercicios; advertencias integradas.
+- Si se declaran síntomas de alarma, se deshabilitan los botones principales de inicio en la pestaña Entrenar. No es una barrera médica certificada ni garantiza impedir todo ejercicio desde otras rutas.
+- Los datos sensibles se guardan solo localmente y **no están cifrados**. No usar como historia clínica ni publicar como producto médico.
+- Para modificar las respuestas: Ajustes → Editar ficha y salud.
+- La aplicación es para adultos; las recomendaciones no sustituyen evaluación clínica.
+
+
+## Seguridad y administración 4.8
+- En Ajustes → Administrar perfiles, el administrador puede eliminar perfiles secundarios y sus registros locales. Requiere confirmar con su propia contraseña.
+- No puede ver, recuperar ni cambiar la contraseña de otro perfil.
+- Contraseñas nuevas de 12 a 128 caracteres, PBKDF2-HMAC-SHA-256 con 310.000 iteraciones y sal aleatoria por perfil. Contraseñas antiguas se migran al ingresar correctamente.
+- Bloqueo temporal tras cinco intentos fallidos, solo en memoria (no impide manipulación técnica).
+- IMPORTANTE: los datos permanecen en localStorage SIN CIFRAR; esto NO equivale a seguridad de nivel bancario ni garantiza protección frente a acceso al dispositivo, herramientas de desarrollador o modificación de archivos. Para protección real de datos de salud y administración remota, usar backend, autenticación de servidor, control de acceso y cifrado.
+
+
+## FitCasa 4.9: roles familiares
+- Propietario: perfil principal migrado desde el administrador existente; no se puede borrar ni degradar desde la interfaz.
+- Administrador: puede crear perfiles y eliminar perfiles normales, no modificar al propietario ni a otros administradores.
+- Adulto: datos y configuración propios.
+- Menor supervisado: etiqueta de rol; **aún no incluye** control parental real ni rutinas pediátricas validadas. No debe utilizarse para menores hasta implementarlas.
+- Solo el propietario puede promover/degradar administradores, confirmando con su contraseña.
+- Los roles se guardan localmente y NO proporcionan seguridad de servidor, cifrado de datos ni sincronización entre dispositivos.
+
+
+## Edad y roles (5.0)
+- Fecha de nacimiento obligatoria para perfiles nuevos; se calcula la edad con día y mes, sin pedir escribirla.
+- Menores de 18 años reciben automáticamente el rol Menor supervisado y no pueden ser administradores.
+- Para perfiles previos, registrar fecha desde Ajustes > Foto, nombre y clave.
+- No se habilitan rutinas de adultos ni cálculos de déficit para menores. Se requiere módulo infantil validado y supervisión adulta.
+- La fecha se almacena localmente; los permisos locales no equivalen a seguridad de servidor.
