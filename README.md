@@ -1,36 +1,40 @@
-# FitCasa PWA — Versión 1.0
+# FitCasa 4 · Entrenador familiar
 
-Aplicación web estática y gratuita para registrar entrenamiento de fuerza (series, repeticiones, peso), bicicleta estática, alimentación (calorías y proteína), peso, cintura y metas de 75/70 kg.
+Aplicación PWA gratuita para Android publicada en GitHub Pages. No requiere cuenta ni backend.
 
-## Probar en computador
+## Funciones
+- Perfiles familiares locales con foto y clave opcional (protección básica, no cifrado).
+- Ficha inicial, IMC, metabolismo basal Mifflin-St Jeor, gasto diario estimado y explicaciones.
+- Recordatorio de revisión semanal al abrir la aplicación.
+- Programa de 52 semanas, entrenamiento guiado, cronómetro activo, pausa, ejercicios confirmados y descanso.
+- Diario de comidas con base de alimentos limitada, peso, cintura, bicicleta, gráficas, estadísticas, exportación e importación de respaldo.
+- Panel de progreso basado en registros reales.
 
-1. Descomprime la carpeta `fitcasa`.
-2. Instala Python si no lo tienes.
-3. Abre una terminal en la carpeta `fitcasa` y ejecuta `python -m http.server 8000` (en Windows también puedes usar `py -m http.server 8000`).
-4. Abre `http://localhost:8000`.
+## Instalación / actualización
+1. Desde FitCasa 1.0, exportar respaldo JSON antes de cambiar archivos.
+2. Subir el contenido de este ZIP a la raíz del repositorio `patomon6/fitcasa` en rama main, reemplazando archivos con el mismo nombre. Subir también `family.js`, `dashboard.js`, `coach4.js` y `icons/`.
+3. Esperar GitHub Pages; cerrar y volver a abrir la PWA. Si se queda en versión antigua, refrescar en Chrome, sin borrar datos del sitio.
+4. Probar crear perfil, completar ficha, iniciar/pausar/finalizar sesión, exportar/importar respaldo.
 
-## Instalar en Android
+## Límites honestos
+- Los datos están solo en el dispositivo; no hay sincronización entre celulares ni notificaciones push con la app cerrada.
+- La clave local no cifra datos ni protege frente a un usuario técnico con acceso al dispositivo.
+- No detecta repeticiones, calorías quemadas ni peso automáticamente sin sensores.
+- Las calorías y proyecciones son estimaciones, no mediciones ni prescripciones médicas.
+- La primera carga necesita internet; después el caché permite uso sin conexión, sujeto al navegador.
 
-Para que sea instalable en Android, **debes publicar los archivos en HTTPS** (abrir `index.html` directamente no basta). Por ejemplo, crea un repositorio público en GitHub, sube los archivos de la carpeta `fitcasa` a la raíz, entra en Settings > Pages > Deploy from a branch y elige `main` / `root`. Abre la URL HTTPS que muestre GitHub Pages en Chrome Android y usa el menú de Chrome → Instalar aplicación o Agregar a pantalla de inicio. En algunos navegadores la opción puede variar.
+## Pruebas
+`node --check app.js && node --check family.js && node --check dashboard.js && node --check coach4.js && node --check sw.js`
 
-## Datos y privacidad
+## Adaptación por perfil (versión final)
+- En la ficha inicial se registra edad, experiencia, movilidad y limitaciones opcionales.
+- Los perfiles principiantes de 65 años o más, o personas que indican movilidad reducida, reciben variantes de menor complejidad. La edad por sí sola no determina la aptitud.
+- La adaptación no diagnostica lesiones ni sustituye evaluación clínica; el usuario confirma el esfuerzo y el trabajo completado.
+- La configuración es individual y puede editarse en Ajustes → Editar ficha.
+- Subir también `adaptive.js` junto con el resto de los archivos de la raíz.
 
-- Todos los datos se almacenan en `localStorage` del navegador, no se envían a ningún servidor.
-- Exporta regularmente un respaldo JSON desde Ajustes; puedes importarlo después en otro dispositivo.
-- No existe sincronización automática entre dispositivos.
-- Si borras los datos del sitio o desinstalas la app, puedes perder los registros.
-- La app no calcula automáticamente calorías ni nutrientes: debes introducirlos a partir de una fuente fiable.
-- El servicio sin conexión funciona después de visitar la aplicación publicada y almacenar los recursos en caché.
 
-## Estructura
+## Administración de perfiles
+La cuenta principal preexistente (id `principal`) se asigna como administradora al actualizar. En instalaciones nuevas, el primer perfil es administrador. En la pantalla de selección se muestran todos los perfiles. Para crear otro, ingresa al perfil administrador y abre Ajustes → Agregar perfil. La evaluación inicial solo se solicita al entrar por primera vez a cada perfil.
 
-- `index.html`: interfaz principal
-- `style.css`: estilos responsivos
-- `app.js`: lógica y almacenamiento local
-- `manifest.webmanifest`: metadatos de instalación
-- `sw.js`: caché para uso sin conexión
-- `icons/`: iconos
-
-## Limitaciones y seguridad
-
-Esta versión es un prototipo personal. No tiene cuenta, nube, recordatorios, fotografías, catálogo nutricional, ni sincronización. Los pesos y calorías propuestos son orientativos y no sustituyen evaluación profesional. No ingreses datos de terceros en un equipo compartido.
+IMPORTANTE: el control de administrador y las claves son locales y no constituyen seguridad fuerte; con acceso técnico al almacenamiento del navegador pueden eludirse. No hay sincronización entre dispositivos.
